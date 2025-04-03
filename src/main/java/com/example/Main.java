@@ -13,13 +13,13 @@ import java.util.stream.Collectors;
 @State(Scope.Thread) // Окрема копія для кожного потоку
 public class Main {
 
-    private static final int kilkict = 10000000;
-    private static final int min = 1;
-    private static final int max = 101;
-    private static final List<Integer> numbers = new Random().ints(kilkict, min, max).boxed().collect(Collectors.toList());
+    private static final int quantityCollection = 10000000;
+    private static final int minnumber = 1;
+    private static final int maxnumber = 101;
+    private static final List<Integer> numbers = new Random().ints(quantityCollection, minnumber, maxnumber).boxed().collect(Collectors.toList());
 
     @Benchmark
-    public long sumStream() {
+    public long sumStreamAPI() {
 
         return numbers.stream().mapToLong(Integer::longValue).sum();
     }
