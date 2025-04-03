@@ -25,7 +25,7 @@ public class Main {
     }
 
     @Benchmark
-    public long sumParallel() {
+    public long sumParallelStream() {
 
         return numbers.parallelStream().mapToLong(Integer::longValue).sum();
     }
@@ -51,29 +51,29 @@ public class Main {
 
 
     @Benchmark
-    public double standartDeviationParallel() {
+    public double standartDeviationParallelStream() {
         double average = averageParallel();
         double variance = numbers.parallelStream().mapToDouble(n -> Math.pow(n - average, 2)).average().orElse(0);
         return Math.sqrt(variance);
     }
 
     @Benchmark
-    public List<Integer> squaresStream() {
+    public List<Integer> squaresStreamAPI() {
         return numbers.stream().map(n -> n * 2).collect(Collectors.toList());
     }
 
     @Benchmark
-    public List<Integer> squaresParallel() {
+    public List<Integer> squaresParallelStream() {
         return numbers.parallelStream().map(n -> n * 2).collect(Collectors.toList());
     }
 
     @Benchmark
-    public List<Integer> couplesvalueStream() {
+    public List<Integer> couplesvalueStreamAPI() {
         return numbers.stream().filter(n -> n % 2 == 0 && n % 3 == 0).collect(Collectors.toList());
     }
 
     @Benchmark
-    public List<Integer> couplesvalueParallel() {
+    public List<Integer> couplesvalueParallelStream() {
         return numbers.parallelStream().filter(n -> n % 2 == 0 && n % 3 == 0).collect(Collectors.toList());
     }
 
